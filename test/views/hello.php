@@ -1,0 +1,1 @@
+<div id="hello"><?=$name?></div>
