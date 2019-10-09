@@ -20,6 +20,14 @@ class ClassicMenu
       $this->parent = $opts['parent'];
   }
 
+  public function getStrings ()
+  {
+    if (isset($this->parent) && is_callable([$this->parent, 'getStrings']))
+    {
+      return $this->parent->getStrings();
+    }
+  }
+
   /**
    * Build a menu.
    *
@@ -207,9 +215,10 @@ class ClassicMenu
             else
             {
               $text = $label;
-              if (isset($this->parent, $this->parent->translate))
+              $strings = $this->getStrings();
+              if (isset($strings))
               {
-                $text = $this->parent->translate[$text];
+                $text = $strings[$text];
               }
             }
             $container->addChild($element, $text);
@@ -277,11 +286,10 @@ class ClassicMenu
         throw new Exception("No Name found for menu item: $key");
       }
 
-      // Now, if we're using a translation object, translate.
-      // We're using the ArrayAccess interface to the translate object.
-      if (isset($this->parent, $this->parent->translate))
+      $strings = $this->getStrings();
+      if (isset($strings))
       {
-        $name = $this->parent->translate[$name];
+        $name = $strings[$name];
       }
 
       // Okay, now let's see if we need to apply any classes.

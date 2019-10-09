@@ -15,6 +15,14 @@ class RouterMenu
       $this->parent = $opts['parent'];
   }
 
+  public function getStrings ()
+  {
+    if (isset($this->parent) && is_callable([$this->parent, 'getStrings']))
+    {
+      return $this->parent->getStrings();
+    }
+  }
+
   /**
    * Build a menu.
    *
@@ -205,9 +213,10 @@ class RouterMenu
             else
             {
               $text = $rule;
-              if (isset($this->parent, $this->parent->translate))
+              $strings = $this->getStrings();
+              if (isset($strings))
               {
-                $text = $this->parent->translate[$text];
+                $text = $strings[$text];
               }
               $item = $container->addChild($label_class, $text);
             }
@@ -278,11 +287,10 @@ class RouterMenu
           continue;
         }
 
-        // Now, if we're using a translation object, translate.
-        // We're using the ArrayAccess interface to the translate object.
-        if (isset($this->parent, $this->parent->translate))
+        $strings = $this->getStrings();
+        if (isset($strings))
         {
-          $name = $this->parent->translate[$name];
+          $name = $strings[$name];
         }
 
         $icon_name = isset($def['icon']) ? $def['icon'] : null;
