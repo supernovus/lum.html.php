@@ -187,6 +187,14 @@ class Helper
   }
 
   /**
+   * Pass through the Simple::strip() static method.
+   */
+  public static function strip ($text, $filters=['R','E'])
+  {
+    return Simple::strip($text, $filters);
+  }
+
+  /**
    * This is where the real magic happens.
    *
    * For any method call that isn't a method directly defined in this class,
