@@ -14,12 +14,12 @@
   {
     "php": "^7.0 || ^8.0",
     "ext-SimpleXML": "*",
-    "lum/lum-core": "^1.0 || dev-master",
-    "lum/lum-xml": "^2.0 || dev-master"
+    "lum/lum-core": "^1.7",
+    "lum/lum-xml": "^2.0"
   },
   "require-dev":
   {
-    "lum/lum-test": "^2.1 || dev-master"
+    "lum/lum-test": "^2.2"
   },
   "autoload":
   {
@@ -31,5 +31,12 @@
   "scripts":
   {
     "test": "lumtest"
+  },
+  "extra":
+  {
+    "branch-alias":
+    {
+      "dev-main": "1.x-dev"
+    }
   }
 }
