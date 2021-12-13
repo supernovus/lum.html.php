@@ -12,8 +12,7 @@
   ],
   "require":
   {
-    "php": "^7.0 || ^8.0",
-    "ext-SimpleXML": "*",
+    "lum/lum-compat": "^1.0",
     "lum/lum-core": "^1.7",
     "lum/lum-xml": "^2.0"
   },
