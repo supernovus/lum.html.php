@@ -255,7 +255,7 @@ class Element implements \ArrayAccess
   /**
    * Is an attribute set on our element?
    */
-  public function offsetExists ($offset)
+  public function offsetExists ($offset): bool
   {
     return isset($this->xml[$offset]);
   }
@@ -263,7 +263,7 @@ class Element implements \ArrayAccess
   /**
    * Get an attribute.
    */
-  public function offsetGet ($offset)
+  public function offsetGet ($offset): mixed
   {
     return $this->xml[$offset];
   }
@@ -271,7 +271,7 @@ class Element implements \ArrayAccess
   /**
    * Set an attribute.
    */
-  public function offsetSet($offset, $value)
+  public function offsetSet($offset, $value): void
   {
     $this->offsetUnset($offset);
     if (is_bool($value))
@@ -285,7 +285,7 @@ class Element implements \ArrayAccess
   /**
    * Unset an attribute.
    */
-  public function offsetUnset ($offset)
+  public function offsetUnset ($offset): void
   {
     if (isset($this->xml[$offset]))
     {
